@@ -2,7 +2,7 @@
 
 ## Install the kafka binaries
 
-## Start and stop the Kafka environment {#start-stop}
+## Start and stop the Kafka environment
 
 I prefer the docker way.
 
