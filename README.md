@@ -43,7 +43,7 @@ Unzip it into a directory in the root of this project.
 ### Write events to the topic
 
 ```shell
-% bin/kafka-console-producer.sh --topic hello-kafka-events --bootstrap-server localhost:9092
+% bin/kafka-console-producer.sh --topic hello-kafka-events --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
 >This my first event
 >This is my second event
 >
