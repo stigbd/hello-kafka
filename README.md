@@ -11,14 +11,14 @@ I prefer the docker way.
 Start the Kafka environment:
 
 ```shell
-% docker run --name mykafkacontainer -p 9092:9092 apache/kafka:3.8.0
+% docker run --name kafka0 -p 9092:9092 apache/kafka:3.8.0
 ```
 
 Stop and remove the Kafka environment:
 
 ```shell
-% docker stop mykafkacontainer 
-% docker rm mykafkacontainer
+% docker stop kafka0 
+% docker rm kafka0
 ```
 
 ## Using Kafka CLI
