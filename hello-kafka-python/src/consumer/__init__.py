@@ -14,10 +14,10 @@ def print_messages() -> None:
         for msg in consumer:
             print(msg)
     except KeyboardInterrupt:
-        print()
+        print("\nBye!")
 
 
 def main() -> int:
-    print("Hello from hello-kafka-python!")
+    print("Hello from hello-kafka-python consumer!")
     print_messages()
     return 0

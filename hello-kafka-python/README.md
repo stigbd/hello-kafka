@@ -6,7 +6,12 @@ Describe your project here.
 
 ```shell
 % rye sync
-% rye run hello-kafka-python
+% rye run consumer
 ```
 
-In a different terminal, write some messages to the topic.
+## Start the python consumer producer
+
+```shell
+% rye sync
+% rye run producer
+```
