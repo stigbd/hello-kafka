@@ -3,7 +3,9 @@ name = "hello-kafka-python"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "Stig B. Dørmænen", email = "stigbd@gmail.com" }]
-dependencies = ["kafka-python-ng~=2.2.2"]
+dependencies = [
+    "confluent-kafka~=2.5.3",
+]
 readme = "README.md"
 requires-python = ">= 3.12"
 

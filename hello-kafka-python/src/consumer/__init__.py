@@ -1,20 +1,33 @@
-from kafka import KafkaConsumer
+from confluent_kafka import Consumer
+
+consumer = Consumer(
+    {
+        "bootstrap.servers": "localhost:9092",
+        "group.id": "hello-kafka-python",
+    }
+)
+
+topic = "hello-kafka-events"
+consumer.subscribe([topic])
 
 
 def print_messages() -> None:
-    consumer = KafkaConsumer(
-        bootstrap_servers="localhost:9092",
-        key_deserializer=lambda k: k.decode("utf-8"),
-        value_deserializer=lambda v: v.decode("utf-8"),
-    )
-
-    consumer.subscribe(["hello-kafka-events"])
-
     try:
-        for msg in consumer:
-            print(msg)
+        while True:
+            msg = consumer.poll(1.0)
+            if msg is None:
+                pass
+            elif msg.error():
+                print(f"ERROR: {msg.error()}")
+            else:
+                print(
+                    f"Consumed event from topic {topic}: key = {msg.key().decode()} value = {msg.value().decode()}"
+                )
+
     except KeyboardInterrupt:
         print("\nBye!")
+    finally:
+        consumer.close()
 
 
 def main() -> int:
