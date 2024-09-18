@@ -1,17 +1,25 @@
 # hello-kafka-python
 
-Describe your project here.
+A simple consumer and producer implmented using the [Confluent's Python Client](https://github.com/confluentinc/confluent-kafka-python)
+
+## Initall setup
+
+```shell
+% rye sync
+```
 
 ## Start the python consumer client
 
 ```shell
-% rye sync
 % rye run consumer
 ```
 
-## Start the python consumer producer
+Terminate the consumer by pressing `CTRL+C`.
+
+## Start the python producer client
 
 ```shell
-% rye sync
 % rye run producer
 ```
+
+Terminate the producer by pressing `CTRL+C`.
