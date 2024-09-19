@@ -1,4 +1,6 @@
-from confluent_kafka import Consumer
+import os
+
+from confluent_kafka import Consumer, KafkaException, Message
 
 consumer = Consumer(
     {
@@ -11,26 +13,45 @@ topic = "hello-kafka-events"
 consumer.subscribe([topic])
 
 
-def print_messages() -> None:
+def print_message(message: Message) -> None:
+    """Prints message to the standard output."""
+    print(
+        f"Consumed message from topic {topic}:",
+        f"\tkey: {message.key().decode()}",
+        f"\tvalue size: {len(message)}",
+        f"\tvalue: {message.value().decode()}",
+        f"\theaders: {message.headers()}",
+        f"\ttimestamp: {message.timestamp()}",
+        f"\tpartition: {message.partition()}",
+        f"\toffset: {message.offset()}",
+        f"\tleader epoch: {message.leader_epoch()}",
+        sep=os.linesep,
+    )
+
+
+def consume_messages() -> None:
+    """Consumes messages from topic until user interupts."""
     try:
         while True:
-            msg = consumer.poll(1.0)
-            if msg is None:
+            message = consumer.poll(1.0)
+            if message is None:
                 pass
-            elif msg.error():
-                print(f"ERROR: {msg.error()}")
+            elif message.error():
+                print(f"ERROR: {message.error()}")
             else:
-                print(
-                    f"Consumed event from topic {topic}: key = {msg.key().decode()} value = {msg.value().decode()}"
-                )
+                print_message(message)
 
     except KeyboardInterrupt:
         print("\nBye!")
     finally:
-        consumer.close()
+        try:
+            consumer.close()
+        except KafkaException:
+            pass
 
 
 def main() -> int:
+    """Consume messages."""
     print("Hello from hello-kafka-python consumer!")
-    print_messages()
+    consume_messages()
     return 0
