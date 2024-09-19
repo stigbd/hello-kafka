@@ -3,9 +3,7 @@ name = "hello-kafka-python"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "Stig B. Dørmænen", email = "stigbd@gmail.com" }]
-dependencies = [
-    "confluent-kafka~=2.5.3",
-]
+dependencies = ["confluent-kafka~=2.5.3"]
 readme = "README.md"
 requires-python = ">= 3.12"
 
@@ -19,4 +17,10 @@ build-backend = "pdm.backend"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = ["pyright~=1.1.381"]
+
+[tool.rye.scripts]
+fmt = "rye fmt"
+lint = "rye lint --fix"
+check = "pyright"
+all = { chain = ["fmt", "lint", "check"] }

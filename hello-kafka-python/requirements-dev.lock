@@ -12,3 +12,6 @@
 -e file:.
 confluent-kafka==2.5.3
     # via hello-kafka-python
+nodeenv==1.9.1
+    # via pyright
+pyright==1.1.381
