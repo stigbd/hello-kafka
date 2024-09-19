@@ -10,8 +10,15 @@
 #   universal: false
 
 -e file:.
-confluent-kafka==2.5.3
+iniconfig==2.0.0
+    # via pytest
+kafka-python-ng==2.2.2
     # via hello-kafka-python
 nodeenv==1.9.1
     # via pyright
+packaging==24.1
+    # via pytest
+pluggy==1.5.0
+    # via pytest
 pyright==1.1.381
+pytest==8.3.3

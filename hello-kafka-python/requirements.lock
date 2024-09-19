@@ -10,5 +10,5 @@
 #   universal: false
 
 -e file:.
-confluent-kafka==2.5.3
+kafka-python-ng==2.2.2
     # via hello-kafka-python

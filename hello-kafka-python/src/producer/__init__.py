@@ -1,6 +1,7 @@
-from confluent_kafka import KafkaException, Producer
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
 
-producer = Producer({"bootstrap.servers": "localhost:9092"})
+producer = KafkaProducer(bootstrap_servers="localhost:9092")
 TOPIC = "hello-kafka-events"
 
 
@@ -8,29 +9,15 @@ class MessagePayload:
     body: str
 
 
-def delivery_report(err, message):
-    """Called once fo re ach message produced to indicate delivery result.
-
-    Triggered by poll() or flush().
-    """
-    if err is not None:
-        print(f"Messsage delivery failed: {err}")
-    else:
-        print(f"Message delivered to {message.topic()} [{message.partition()}]")
-
-
 def send_message(topic: str, key: str, value: MessagePayload) -> None:
     """Encode and send the message to the topic."""
-    producer.poll(0)
+    try:
+        producer.send(topic=topic, key=key.encode(), value=value.body.encode())
+        producer.flush()
+    except KafkaError as e:
+        print(f"Exception: {e} ")
 
-    producer.produce(
-        topic=topic,
-        key=key.encode(),
-        value=value.body.encode(),
-        on_delivery=delivery_report,
-    )
-
-    producer.flush()
+    print(f"Message delivered to {topic}.")
 
 
 def main() -> int:
@@ -43,10 +30,7 @@ def main() -> int:
             payload.body = input("payload-->")
 
             # Send the message to the "hello-kafka-events" topic
-            try:
-                send_message(topic=TOPIC, key=key, value=payload)
-            except KafkaException as e:
-                print(e)
+            send_message(topic=TOPIC, key=key, value=payload)
 
         except KeyboardInterrupt:
             print("\nBye!")
