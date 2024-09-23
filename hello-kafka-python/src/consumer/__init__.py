@@ -5,6 +5,7 @@ from kafka.errors import KafkaError
 
 consumer = KafkaConsumer(
     bootstrap_servers="localhost:9092",
+    group_id="group-python",
 )
 
 topic = "hello-kafka-events"
