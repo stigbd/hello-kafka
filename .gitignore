@@ -1,2 +1,5 @@
 # Ignore the kafka environment
 kafka_*
+
+# Ignore editor files
+.vscode
