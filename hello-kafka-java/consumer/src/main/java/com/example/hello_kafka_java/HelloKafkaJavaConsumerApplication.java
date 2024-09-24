@@ -8,10 +8,10 @@ import com.example.hello_kafka_java.config.KafkaConsumerConfig;
 
 @SpringBootApplication
 @Import(value = { KafkaConsumerConfig.class })
-public class HelloKafkaJavaApplication {
+public class HelloKafkaJavaConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloKafkaJavaApplication.class, args);
+		SpringApplication.run(HelloKafkaJavaConsumerApplication.class, args);
 
 	}
 }
