@@ -33,14 +33,6 @@ Also called __record__ or __message__. An event has the following parts:
 
 The messages are guaranteed to be processed in order only if they share the same key.
 
-#### Producer
-
-A client that publish (write) an event to a broker.
-
-#### Consumer
-
-A client that subscribe to (read and process) an event on a broker.
-
 #### Topics
 
 Events are organized and stored in topics, similar to a folder in a filesystem.
@@ -50,6 +42,18 @@ Events are organized and stored in topics, similar to a folder in a filesystem.
  A topic is spread over a number of partitions ("buckets") located on different brokers.
 
 Note: Events with the same key are written to the same partition.
+
+#### Producer
+
+A client that publish (write) an event to a broker.
+
+#### Consumer
+
+A client that subscribe to (read and process) an event on a broker.
+
+#### Consumer group
+
+A group of consumers that work together to consume a topic. Each partition is consumed by exactly one consumer within each subscribing consumer group at any given time.
 
 ### Start and stop the Kafka environment
 
@@ -127,3 +131,4 @@ Count the number of messages in a topic and exit:
 - [Apache Kafka Quickstart](https://kafka.apache.org/quickstart)
 - [Documentation](https://kafka.apache.org/documentation/)
 - [Apache Kafka Docker](https://hub.docker.com/r/apache/kafka)
+- [Manjula Piyumal (2024), Mastering Kafka: Advanced Concepts Every Senior Software Engineer Should Know](https://manjulapiyumal.medium.com/mastering-kafka-advanced-concepts-every-senior-software-engineer-should-know-9283664c99e1)
