@@ -76,7 +76,7 @@ Stop and remove the Kafka environment:
 
 #### Install the Kafka binaries
 
-Download the latest Kafka binary relase from [here](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.8.0/kafka_2.13-3.8.0.tgz)
+Download the latest Kafka binary relase from [here](https://kafka.apache.org/downloads)
 
 Unzip it into a directory in the root of this project.
 
